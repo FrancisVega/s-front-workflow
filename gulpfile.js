@@ -14,8 +14,6 @@ var dirs = {
     dist: 'dist/',
 };
 
-
-
 // Sass
 gulp.task('compass', function() {
     return gulp.src([dirs.app + 'scss/*.scss'])
@@ -29,18 +27,6 @@ gulp.task('compass', function() {
         .pipe(browserSync.reload({
             stream: true
         }));
-});
-
-// BrowserSync
-gulp.task('browserSync', function() {
-    browserSync({
-        server: {
-            baseDir: dirs.app
-        },
-        // browser: 'safari'
-        browser: 'google chrome',
-        notify: false
-    })
 });
 
 // BrowserSync
