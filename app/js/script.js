@@ -1,0 +1,3 @@
+/* HANDER */
+
+var foo = "bar";
