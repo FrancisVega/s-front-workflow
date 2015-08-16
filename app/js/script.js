@@ -1,3 +1,0 @@
-/* HANDER */
-
-var foo = "bar";
