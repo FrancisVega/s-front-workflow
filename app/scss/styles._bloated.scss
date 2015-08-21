@@ -1,0 +1,237 @@
+// Import susy
+@import "../../bower_components/susy/sass/susy";
+@import "compass/reset";
+@import "compass/utilities";
+@import "compass/css3";
+@import "fontface";
+
+
+$susy: (
+    columns: 8,
+    gutters: 0,
+    global-box-sizing: border-box,
+    debug: (
+        image: false,
+        color: rgba(10,10,100,0.1)
+    )
+);
+
+@include border-box-sizing;
+
+// Colores
+$pirite: rgba(189,148,81,1);
+$carbon: #232323;
+
+html {
+    font-size: 10px;
+}
+
+body {
+    font-size: 10px;
+    color: #ffffff;
+    // background: url("http://sqy-web.secuoyas.io/VD/somos/metodologia/640_slice_0.png") top center no-repeat;
+    background-size: 100%;
+    background-color: $carbon;
+    font-family: "sofiaprolight";
+    position: relative;
+    background-image: url("../assets/images/img-bg-body-metodologia.png");
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: portrait;
+    background-attachment: fixed;
+}
+
+
+.wrapper {
+    min-width: 100%;
+    padding: 0 3rem;
+
+    @include susy-breakpoint(900px, 16) {
+        padding: 0;
+    }
+
+}
+
+.container {
+    @include container(899px);
+    @include clearfix;
+
+    @include susy-breakpoint(900px, 16) {
+        @include container(900px);
+
+    }
+}
+
+.wrapper.knav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 24rem;
+    // z-index: -999;
+
+    .header {
+        margin-top: 2.4rem;
+    }
+
+}
+
+//
+// Intro module
+//
+.intro {
+
+    .row {
+        // Font
+        // Geometry
+        margin-top: 12rem;
+        margin-bottom: 5rem;
+        // Grid
+        @include full;
+        @include pre(0);
+
+        @include susy-breakpoint(900px, 16) {
+            // Geometry
+            margin-top: 22rem;
+            margin-bottom: 10rem;
+            // Grid
+            @include full;
+            @include pre(1);
+        }
+        h1 {
+            // Font
+            font-family: "sofiaprolight";
+            letter-spacing: -2px;
+            font-size: 4.4rem;
+            line-height: 4.4rem;
+            // Positions
+            margin-bottom: 2rem;
+            // Style
+            color: $pirite;
+            @include susy-breakpoint(900px, 16) {
+                // Font
+                font-size: 7.2rem;
+                line-height: 7.2rem;
+            }
+        }
+        span {
+            // Font
+            font-family: "sofiaprolight";
+            letter-spacing: -0.5px;
+            font-size: 2.2rem;
+            line-height: 2.75rem;
+            // Style
+            color: #666666;
+            @include susy-breakpoint(900px, 16) {
+                // Font
+                font-size: 3.2rem;
+                line-height:3.2rem;
+            }
+        }
+    }
+}
+
+
+.big-section {
+    .row {
+        // Font
+        // Geometry
+        // Grid
+        @include full;
+        @include pre(0);
+
+        @include susy-breakpoint(900px, 16) {
+            // Geometry
+            // Grid
+            @include full;
+            @include pre(1);
+        }
+
+
+        h1 {
+            // font
+            font-size: 2rem;
+            letter-spacing: -1px;
+            color: $pirite;
+            // geometry
+            border-bottom: 1px solid #777777;
+            padding-bottom: 1.75rem;
+            margin-bottom: 3rem;
+            // grid
+            @include full;
+
+            @include susy-breakpoint(900px, 16) {
+                // Font
+                font-size: 3.2rem;
+                // Geometry
+                // Grid
+
+            }
+        }
+
+        .block  {
+            margin-bottom: 4rem;
+            h2 {
+                font-family: "sofiaprolight";
+                letter-spacing: -0.5px;
+                font-size: 2.4rem;
+                line-height: 2.75rem;
+                margin-bottom: 2.5rem;
+                @include susy-breakpoint(900px, 16) {
+                    // Font
+                    font-size: 4rem;
+                    line-height: 4.5rem;
+                    // Geometry
+                    // Grid
+                }
+            }
+            p {
+                font-family: "sofiaprolight";
+                line-height: 2.4rem;
+                font-size: 1.6rem;
+                margin-bottom: 2rem;
+                // Style
+                color: #999999;
+                em {
+                    color: #232323;
+                    background-color: $pirite;
+                }
+            }
+        }
+    }
+}
+
+
+
+.wrapper.kuote {
+    @include full;
+    @include clearfix;
+    background-color: #822DAC;
+    .container {
+        margin-top: 4rem;
+    }
+}
+
+.quote-block {
+    font-family: PlayfairDisplay-Regular;
+    font-size: 2.4rem;
+    line-height: 3.8rem;
+    letter-spacing: -0.5px;
+    position: relative;
+    @include full;
+    .cite {
+        margin-bottom: 22rem;
+    }
+    .quote-person {
+        position: absolute;
+        bottom: 2.4rem;
+        font-size: 1.6rem;
+        font-family: "sofiaprolight";
+        color: rgba(255, 255, 255, 0.75);
+        p {
+            font-family: SofiaPro-extralight;
+            line-height: 2.5rem;
+            letter-spacing: -0.5px;
+        }
+    }
+}

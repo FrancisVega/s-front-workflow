@@ -6,7 +6,10 @@ var gulp         = require('gulp'),
     concat       = require('gulp-concat')
     rename       = require('gulp-rename'),
     compass      = require('gulp-compass'),
-    uglify       = require('gulp-uglify');
+    uglify       = require('gulp-uglify'),
+    svgmin       = require('gulp-svgmin');
+
+
 
 // Rutas báses del proyecto
 var dirs = {
@@ -54,6 +57,13 @@ gulp.task('watch', ['browserSync'], function(){
 */
 
 
+// Optimizar SVGs
+gulp.task('svgo', function () {
+    return gulp.src(dirs.app + "assets/images/*.svg")
+        .pipe(svgmin())
+        .pipe(gulp.dest(dirs.app + "assets/images"));
+});
+
 // Lint Task
 gulp.task('lint', function() {
     return gulp.src(dirs.app + 'js/*.js')
@@ -96,4 +106,4 @@ gulp.task('copy', function() {
 
 // Default
 gulp.task('default', ['compass', 'watch']);
-gulp.task('build', ['lint', 'compass', 'scripts', 'copy']);
+gulp.task('build', ['svgo', 'lint', 'compass', 'scripts', 'copy']);

@@ -17,8 +17,6 @@ colorRed="\x1b[31;01m"
 colorGreen="\x1b[32;01m"
 colorPirite="\x1b[43;01m]"
 
-echo -e $colorPirite "\e[91" JANDLER $colorReset
-
 # Welcome
 echo -e "\nSecuoyas front-end instalation script\n"
 
@@ -76,8 +74,8 @@ done
 
 # Con todas las dependencias instaladas, vamos con el proyecto.
 echo "\nInstalando dependencias de node y bower"
-echo "npm install --save-dev"
-echo "bower install --save"
+npm install --save-dev
+bower install --save
 
 
 # Bye :)

@@ -1,0 +1,315 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+html {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+q, blockquote {
+  quotes: none;
+}
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+a img {
+  border: none;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
+
+@font-face {
+  font-family: 'sofiaproregular';
+  src: url("../assets/fonts/SofiaPro-web/SofiaProRegular-webfont.eot");
+  src: url("../assets/fonts/SofiaPro-web/SofiaProRegular-webfont.eot?#iefix") format("embedded-opentype"), url("../assets/fonts/SofiaPro-web/SofiaProRegular-webfont.woff") format("woff"), url("../assets/fonts/SofiaPro-web/SofiaProRegular-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'sofiaprolight';
+  src: url("../assets/fonts/SofiaPro-web/SofiaProLight-webfont.eot");
+  src: url("../assets/fonts/SofiaPro-web/SofiaProLight-webfont.eot?#iefix") format("embedded-opentype"), url("../assets/fonts/SofiaPro-web/SofiaProLight-webfont.woff") format("woff"), url("../assets/fonts/SofiaPro-web/SofiaProLight-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'sofiaproultralight';
+  src: url("../assets/fonts/SofiaPro-web/SofiaProUltraLight-webfont.eot");
+  src: url("../assets/fonts/SofiaPro-web/SofiaProUltraLight-webfont.eot?#iefix") format("embedded-opentype"), url("../assets/fonts/SofiaPro-web/SofiaProUltraLight-webfont.woff") format("woff"), url("../assets/fonts/SofiaPro-web/SofiaProUltraLight-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'sofiaproextralight';
+  src: url("../assets/fonts/SofiaPro-web/SofiaProExtraLight-webfont.eot");
+  src: url("../assets/fonts/SofiaPro-web/SofiaProExtraLight-webfont.eot?#iefix") format("embedded-opentype"), url("../assets/fonts/SofiaPro-web/SofiaProExtraLight-webfont.woff") format("woff"), url("../assets/fonts/SofiaPro-web/SofiaProExtraLight-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'playfairregular';
+  src: format("woff"), url("../assets/fonts/Playfair_Display/PlayfairDisplay-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-size: 10px;
+  color: #ffffff;
+  background-size: 100%;
+  background-color: #232323;
+  font-family: "sofiaprolight";
+  position: relative;
+  background-image: url("../assets/images/img-bg-body-metodologia.png");
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: portrait;
+  background-attachment: fixed;
+}
+
+.wrapper {
+  min-width: 100%;
+  padding: 0 3rem;
+}
+@media (min-width: 900px) {
+  .wrapper {
+    padding: 0;
+  }
+}
+
+.container {
+  max-width: 899px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  *zoom: 1;
+}
+.container:after {
+  content: " ";
+  display: block;
+  clear: both;
+}
+@media (min-width: 900px) {
+  .container {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .container:after {
+    content: " ";
+    display: block;
+    clear: both;
+  }
+}
+
+.wrapper.knav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 24rem;
+}
+.wrapper.knav .header {
+  margin-top: 2.4rem;
+}
+
+.intro .row {
+  margin-top: 12rem;
+  margin-bottom: 5rem;
+  clear: both;
+  width: 100%;
+  float: left;
+  margin-left: 0;
+  margin-right: 0;
+  margin-left: 0%;
+}
+@media (min-width: 900px) {
+  .intro .row {
+    margin-top: 22rem;
+    margin-bottom: 10rem;
+    clear: both;
+    width: 100%;
+    float: left;
+    margin-left: 0;
+    margin-right: 0;
+    margin-left: 6.25%;
+  }
+}
+.intro .row h1 {
+  font-family: "sofiaprolight";
+  letter-spacing: -2px;
+  font-size: 4.4rem;
+  line-height: 4.4rem;
+  margin-bottom: 2rem;
+  color: #bd9451;
+}
+@media (min-width: 900px) {
+  .intro .row h1 {
+    font-size: 7.2rem;
+    line-height: 7.2rem;
+  }
+}
+.intro .row span {
+  font-family: "sofiaprolight";
+  letter-spacing: -0.5px;
+  font-size: 2.2rem;
+  line-height: 2.75rem;
+  color: #666666;
+}
+@media (min-width: 900px) {
+  .intro .row span {
+    font-size: 3.2rem;
+    line-height: 3.2rem;
+  }
+}
+
+.big-section .row {
+  clear: both;
+  width: 100%;
+  float: left;
+  margin-left: 0;
+  margin-right: 0;
+  margin-left: 0%;
+}
+@media (min-width: 900px) {
+  .big-section .row {
+    clear: both;
+    width: 100%;
+    float: left;
+    margin-left: 0;
+    margin-right: 0;
+    margin-left: 6.25%;
+  }
+}
+.big-section .row h1 {
+  font-size: 2rem;
+  letter-spacing: -1px;
+  color: #bd9451;
+  border-bottom: 1px solid #777777;
+  padding-bottom: 1.75rem;
+  margin-bottom: 3rem;
+  clear: both;
+  width: 100%;
+  float: left;
+  margin-left: 0;
+  margin-right: 0;
+}
+@media (min-width: 900px) {
+  .big-section .row h1 {
+    font-size: 3.2rem;
+  }
+}
+.big-section .row .block {
+  margin-bottom: 4rem;
+}
+.big-section .row .block h2 {
+  font-family: "sofiaprolight";
+  letter-spacing: -0.5px;
+  font-size: 2.4rem;
+  line-height: 2.75rem;
+  margin-bottom: 2.5rem;
+}
+@media (min-width: 900px) {
+  .big-section .row .block h2 {
+    font-size: 4rem;
+    line-height: 4.5rem;
+  }
+}
+.big-section .row .block p {
+  font-family: "sofiaprolight";
+  line-height: 2.4rem;
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+  color: #999999;
+}
+.big-section .row .block p em {
+  color: #232323;
+  background-color: #bd9451;
+}
+
+.wrapper.kuote {
+  clear: both;
+  width: 100%;
+  float: left;
+  margin-left: 0;
+  margin-right: 0;
+  overflow: hidden;
+  *zoom: 1;
+  background-color: #822DAC;
+}
+.wrapper.kuote .container {
+  margin-top: 4rem;
+}
+
+.quote-block {
+  font-family: PlayfairDisplay-Regular;
+  font-size: 2.4rem;
+  line-height: 3.8rem;
+  letter-spacing: -0.5px;
+  position: relative;
+  clear: both;
+  width: 100%;
+  float: left;
+  margin-left: 0;
+  margin-right: 0;
+}
+.quote-block .cite {
+  margin-bottom: 22rem;
+}
+.quote-block .quote-person {
+  position: absolute;
+  bottom: 2.4rem;
+  font-size: 1.6rem;
+  font-family: "sofiaprolight";
+  color: rgba(255, 255, 255, 0.75);
+}
+.quote-block .quote-person p {
+  font-family: SofiaPro-extralight;
+  line-height: 2.5rem;
+  letter-spacing: -0.5px;
+}
