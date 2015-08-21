@@ -3,3 +3,5 @@ bower_components/
 .*
 !/.gitignore
 app/*.html
+app/assets/images/*.*
+app/assets/fonts/*.*
