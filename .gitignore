@@ -5,3 +5,5 @@ bower_components/
 app/*.html
 app/assets/images/*.*
 app/assets/fonts/*.*
+app/js/*.*
+dis/*.*
