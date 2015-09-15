@@ -1,35 +1,34 @@
+/*
+ *
+ * Gulp project boilerplate
+ *
+ */
+
 // Vars
 var gulp         = require('gulp'),
     browserSync  = require('browser-sync'),
+    sass         = require('gulp-sass'),
     plumber      = require('gulp-plumber'),
     jshint       = require('gulp-jshint'),
-    concat       = require('gulp-concat')
+    concat       = require('gulp-concat'),
     rename       = require('gulp-rename'),
-    compass      = require('gulp-compass'),
     uglify       = require('gulp-uglify'),
     svgmin       = require('gulp-svgmin');
 
-
-
 // Rutas báses del proyecto
 var dirs = {
-    app: 'app/',
+    src: 'src/',
     dist: 'dist/',
 };
 
-// Sass
-gulp.task('compass', function() {
-    return gulp.src([dirs.app + 'scss/*.scss'])
-        .pipe(plumber())
-        .pipe(compass({
-            css: dirs.app + 'css',
-            sass: dirs.app + '/scss'
-        }))
-        .pipe(gulp.dest(dirs.app + 'temp'))
-        // Reloading the stream
+// Sass con gulp-sass (libsass)
+gulp.task('sass', function(){
+    return gulp.src(dirs.src + 'scss/*.scss')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest(dirs.dist + 'css'))
         .pipe(browserSync.reload({
             stream: true
-        }));
+        }))
 });
 
 // BrowserSync
@@ -37,7 +36,7 @@ gulp.task('browserSync', function() {
     browserSync({
         files: "*.php, *.html, *.js, *.css",
         server: {
-            baseDir: dirs.app
+            baseDir: dirs.src
         },
         // browser: 'safari'
         browser: 'google chrome',
@@ -47,26 +46,27 @@ gulp.task('browserSync', function() {
 
 // Watch
 gulp.task('watch', ['browserSync'], function(){
-    gulp.watch(dirs.app + 'scss/*.scss', ['compass']);
-    gulp.watch(dirs.app + '*.html', browserSync.reload);
-    gulp.watch(dirs.app + 'js/*.js', browserSync.reload);
+    gulp.watch(dirs.src + 'scss/*.scss', ['sass']);
+    gulp.watch(dirs.src + '*.html', browserSync.reload);
+    gulp.watch(dirs.src + 'js/*.js', browserSync.reload);
 });
 
 /*
-*  Tareas exclusivas para build
-*/
-
+ *
+ * Tareas exclusivas para build
+ *
+ */
 
 // Optimizar SVGs
 gulp.task('svgo', function () {
-    return gulp.src(dirs.app + "assets/images/*.svg")
+    return gulp.src(dirs.src + "assets/images/*.svg")
         .pipe(svgmin())
-        .pipe(gulp.dest(dirs.app + "assets/images"));
+        .pipe(gulp.dest(dirs.src + "assets/images"));
 });
 
 // Lint Task
 gulp.task('lint', function() {
-    return gulp.src(dirs.app + 'js/*.js')
+    return gulp.src(dirs.src + 'js/*.js')
         .pipe(plumber())
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
@@ -75,7 +75,7 @@ gulp.task('lint', function() {
 
 // Concatenate & Minify JS
 gulp.task('scripts', function() {
-    return gulp.src(dirs.app + 'js/*.js')
+    return gulp.src(dirs.src + 'js/*.js')
         .pipe(plumber())
         .pipe(concat('all.js'))
         .pipe(gulp.dest(dirs.dist + '/js'))
@@ -91,19 +91,19 @@ gulp.task('scripts', function() {
 // Copia htmls, css, js y el directorio assets (imágenes, fuentes, etc..)
 gulp.task('copy', function() {
     // HTML
-    gulp.src(['*.html'], {cwd: dirs.app})
+    gulp.src(['*.html'], {cwd: dirs.src})
     .pipe(gulp.dest(dirs.dist));
 
     // CSS
-    gulp.src(['css/**/*.css'], {cwd: dirs.app})
+    gulp.src(['css/**/*.css'], {cwd: dirs.src})
     .pipe(gulp.dest(dirs.dist + 'css'));
 
     // Assets
-    gulp.src(['assets/**'], {cwd: dirs.app})
+    gulp.src(['assets/**'], {cwd: dirs.src})
     .pipe(gulp.dest(dirs.dist + 'assets'));
 
 });
 
 // Default
-gulp.task('default', ['compass', 'watch']);
-gulp.task('build', ['svgo', 'lint', 'compass', 'scripts', 'copy']);
+gulp.task('default', ['sass', 'watch']);
+gulp.task('build', ['svgo', 'lint', 'sass', 'scripts', 'copy']);

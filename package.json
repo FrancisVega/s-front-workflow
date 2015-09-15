@@ -1,23 +1,27 @@
 {
-  "name": "sqy-web-boilerplagte",
+  "name": "sqy-susy-boilerplagte",
   "version": "1.0.0",
-  "description": "",
+  "description": "Gulp project",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "secuoyas",
+  "author": "Francis Vega",
   "license": "ISC",
   "devDependencies": {
     "browser-sync": "^2.8.2",
     "gulp": "^3.9.0",
-    "gulp-compass": "^2.1.0",
     "gulp-concat": "^2.6.0",
     "gulp-jshint": "^1.11.2",
     "gulp-plumber": "^1.0.1",
     "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.0.4",
     "gulp-svgmin": "^1.2.0",
     "gulp-uglify": "^1.2.0",
     "svgo": "^0.5.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/FrancisVega/sqy-susy-boilerplate.git"
   }
 }

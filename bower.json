@@ -13,6 +13,7 @@
     "tests"
   ],
   "dependencies": {
-    "susy": "~2.2.5"
+    "susy": "~2.2.6",
+    "compass-mixins": "~1.0.2"
   }
 }
