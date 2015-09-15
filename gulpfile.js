@@ -25,7 +25,7 @@ var dirs = {
 gulp.task('sass', function(){
     return gulp.src(dirs.src + 'scss/*.scss')
         .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest(dirs.dist + 'css'))
+        .pipe(gulp.dest(dirs.src + 'css'))
         .pipe(browserSync.reload({
             stream: true
         }))
