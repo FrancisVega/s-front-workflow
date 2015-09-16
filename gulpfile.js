@@ -5,15 +5,20 @@
  */
 
 // Vars
-var gulp         = require('gulp'),
-    browserSync  = require('browser-sync'),
-    sass         = require('gulp-sass'),
-    plumber      = require('gulp-plumber'),
-    jshint       = require('gulp-jshint'),
-    concat       = require('gulp-concat'),
-    rename       = require('gulp-rename'),
-    uglify       = require('gulp-uglify'),
-    svgmin       = require('gulp-svgmin');
+var gulp         = require('gulp');
+var browserSync  = require('browser-sync');
+var sass         = require('gulp-sass');
+var plumber      = require('gulp-plumber');
+var jshint       = require('gulp-jshint');
+var concat       = require('gulp-concat');
+var rename       = require('gulp-rename');
+var uglify       = require('gulp-uglify');
+var svgmin       = require('gulp-svgmin');
+var minifyCss    = require('gulp-minify-css');
+var autoprefixer = require('gulp-autoprefixer');
+var sourcemaps   = require('gulp-sourcemaps');
+var imageMin     = require('gulp-imagemin');
+var pngquant     = require('imagemin-pngquant');
 
 // Rutas báses del proyecto
 var dirs = {
@@ -24,11 +29,16 @@ var dirs = {
 // Sass con gulp-sass (libsass)
 gulp.task('sass', function(){
     return gulp.src(dirs.src + 'scss/*.scss')
+        .pipe(plumber())
+        .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest(dirs.src + 'css'))
+        .pipe(autoprefixer())
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest('src/css'))
+        // Reloading the stream
         .pipe(browserSync.reload({
             stream: true
-        }))
+        }));
 });
 
 // BrowserSync
@@ -64,6 +74,18 @@ gulp.task('svgo', function () {
         .pipe(gulp.dest(dirs.src + "assets/images"));
 });
 
+
+// Optimiza imágenes
+gulp.task('imageMin', function() {
+    return gulp.src(dirs.src + "assets/images/*.*")
+        .pipe(imageMin({
+            progressive: true,
+            svgoPlugins: [{removeViewBox: false}],
+            use: [pngquant()]
+        }))
+        .pipe(gulp.dest(dirs.dist + "assets/images"));
+})
+
 // Lint Task
 gulp.task('lint', function() {
     return gulp.src(dirs.src + 'js/*.js')
@@ -71,7 +93,6 @@ gulp.task('lint', function() {
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
 });
-
 
 // Concatenate & Minify JS
 gulp.task('scripts', function() {
@@ -87,23 +108,25 @@ gulp.task('scripts', function() {
         }));
 });
 
+// Minifica el css de SRC directamente a DIST
+gulp.task('miniCSS', function() {
+    return gulp.src(dirs.src + 'css/*.css')
+        .pipe(minifyCss({compatibilituy: 'ie8'}))
+        .pipe(gulp.dest(dirs.dist + 'css'))
+})
 
-// Copia htmls, css, js y el directorio assets (imágenes, fuentes, etc..)
+// Copia html y tipografía
 gulp.task('copy', function() {
     // HTML
     gulp.src(['*.html'], {cwd: dirs.src})
     .pipe(gulp.dest(dirs.dist));
 
-    // CSS
-    gulp.src(['css/**/*.css'], {cwd: dirs.src})
-    .pipe(gulp.dest(dirs.dist + 'css'));
-
-    // Assets
-    gulp.src(['assets/**'], {cwd: dirs.src})
-    .pipe(gulp.dest(dirs.dist + 'assets'));
+    // Typografía
+    gulp.src(['assets/fonts/*.*'], {cwd: dirs.src})
+    .pipe(gulp.dest(dirs.dist + 'assets/fonts'));
 
 });
 
 // Default
 gulp.task('default', ['sass', 'watch']);
-gulp.task('build', ['svgo', 'lint', 'sass', 'scripts', 'copy']);
+gulp.task('build', ['svgo', 'lint', 'sass', 'scripts', 'miniCSS', 'imageMin', 'copy']);
