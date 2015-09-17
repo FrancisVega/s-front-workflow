@@ -5,7 +5,7 @@
 # Secuoyas 2015
 
 # Programs
-APPS=(node bower)
+APPS=(node bower gulp)
 
 # Symbols
 SKULL="\xE2\x98\xA0"
@@ -34,18 +34,33 @@ install_app () {
     fi
 
     # Bower
-    # Si no está bower se instala con node
+    # Si no está bower se instala con npm
     if [ "$1" = ${APPS[1]}  ]; then
         read -p "Bower no está en el sistema, ¿instalarlo? (s/n)? " answer
         case ${answer:0:1} in
             s|S )
-                echo "node install -g bower";;
+                echo "npm install -g bower";;
             * )
             echo No
             echo -e "Instalación abortada"
             exit;;
         esac
     fi
+    
+    # Gulp (global)
+    # Si no está gulp se instala con npm
+    if [ "$1" = ${APPS[2]}  ]; then
+        read -p "Gulp no está en el sistema, ¿instalarlo? (s/n)? " answer
+        case ${answer:0:1} in
+            s|S )
+                echo "npm install -g gulp;;
+            * )
+            echo No
+            echo -e "Instalación abortada"
+            exit;;
+        esac
+    fi
+    
 }
 
 # Pasamos por todos los programas (node y bower)
