@@ -53,7 +53,7 @@ install_app () {
         read -p "Gulp no está en el sistema, ¿instalarlo? (s/n)? " answer
         case ${answer:0:1} in
             s|S )
-                echo "npm install -g gulp;;
+                echo "npm install -g gulp";;
             * )
             echo No
             echo -e "Instalación abortada"
