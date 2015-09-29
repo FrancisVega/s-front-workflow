@@ -14,10 +14,11 @@ var browserSync  = require('browser-sync');
 var plumber      = require('gulp-plumber');
 var rename       = require('gulp-rename');
 var concat       = require('gulp-concat');
+var del          = require('del');
+var runSequence  = require('run-sequence');
 // CSS
 var sass         = require('gulp-sass');
 var sourcemaps   = require('gulp-sourcemaps');
-var minifyCss    = require('gulp-minify-css');
 var autoprefixer = require('autoprefixer'); // <- postcss
 var csswring     = require('csswring'); // <- postcss
 // JS
@@ -33,13 +34,13 @@ var svgmin       = require('gulp-svgmin');
 // --------------------------------------------------------------------------{{{
 // DIRECTORIOS DEL PROYECTO
 // src = Source
-// dist = Distribution
+// dst = dstribution
 //
 // Si renombramos las carpetas por alguna razón en este diccionario se pueden
 // cambiar rápidamente el nombre y todo sigue funcionando
 var dirs = {
     src: 'src/',
-    dist: 'dist/',
+    dst: 'dist/',
 };
 // }}} 
 
@@ -65,7 +66,7 @@ gulp.task('sass', function(){
         .pipe(postcss(processors))
         //.pipe(autoprefixer())
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('src/css'))
+        .pipe(gulp.dest(dirs.src + 'css'))
         // Reloading the stream
         .pipe(browserSync.reload({
             stream: true
@@ -108,6 +109,20 @@ gulp.task('watch', ['browserSync'], function(){
 
 
 // TAREAS BUILD
+
+
+// --------------------------------------------------------------------------{{{
+// BORRA EL DIRECTORIO dst
+// 
+// Para hacer un build limpio primero borramos todo el contenido del directorio
+// dst.
+gulp.task('clean', function () {
+  return del([ dirs.dst + '**/*'
+  ]);
+});
+// }}} 
+
+
 // --------------------------------------------------------------------------{{{
 // OPTIMIZAR SVGS 
 // 
@@ -129,7 +144,7 @@ gulp.task('imageMin', function() {
             svgoPlugins: [{removeViewBox: false}],
             use: [pngquant()]
         }))
-        .pipe(gulp.dest(dirs.dist + "assets/images"));
+        .pipe(gulp.dest(dirs.dst + "assets/images"));
 })
 // }}} 
 
@@ -151,10 +166,10 @@ gulp.task('scripts', function() {
     return gulp.src(dirs.src + 'js/*.js')
         .pipe(plumber())
         .pipe(concat('all.js'))
-        .pipe(gulp.dest(dirs.dist + '/js'))
+        .pipe(gulp.dest(dirs.dst + '/js'))
         .pipe(rename('all.min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest(dirs.dist + '/js'))
+        .pipe(gulp.dest(dirs.dst + '/js'))
         .pipe(browserSync.reload({
             stream: true
         }));
@@ -163,25 +178,19 @@ gulp.task('scripts', function() {
 
 
 // --------------------------------------------------------------------------{{{
-// MINIFICA EL CSS DE SRC DIRECTAMENTE A DIST
-gulp.task('miniCSS', function() {
-    return gulp.src(dirs.src + 'css/*.css')
-        .pipe(minifyCss({compatibilituy: 'ie8'}))
-        .pipe(gulp.dest(dirs.dist + 'css'))
-})
-// }}} 
-
-
-// --------------------------------------------------------------------------{{{
-// COPIA HTML Y TIPOGRAFÍA
+// COPIA HTML, CSS Y TIPOGRAFÍA
 gulp.task('copy', function() {
+    // CSS
+    gulp.src(['css/**/*.css'], {cwd: dirs.src})
+    .pipe(gulp.dest(dirs.dst + "css"));
+
     // HTML
     gulp.src(['*.html'], {cwd: dirs.src})
-    .pipe(gulp.dest(dirs.dist));
+    .pipe(gulp.dest(dirs.dst));
 
     // Typografía
     gulp.src(['assets/fonts/*.*'], {cwd: dirs.src})
-    .pipe(gulp.dest(dirs.dist + 'assets/fonts'));
+    .pipe(gulp.dest(dirs.dst + 'assets/fonts'));
 
 });
 // }}} 
@@ -190,5 +199,11 @@ gulp.task('copy', function() {
 // --------------------------------------------------------------------------{{{
 // TAREAS GULP
 gulp.task('default', ['sass', 'watch']);
-gulp.task('build', ['svgo', 'lint', 'sass', 'scripts', 'miniCSS', 'imageMin', 'copy']);
+gulp.task('build', function(callback) {
+    runSequence(
+        'clean',
+        ['svgo', 'lint', 'sass', 'scripts', 'imageMin'],
+        'copy',
+        callback);
+});
 // }}} 
