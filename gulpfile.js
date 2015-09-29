@@ -62,9 +62,9 @@ gulp.task('sass', function(){
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
-        .pipe(postcss())
+        .pipe(postcss(processors))
         //.pipe(autoprefixer())
-        .pipe(sourcemaps.write(.))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest('src/css'))
         // Reloading the stream
         .pipe(browserSync.reload({
