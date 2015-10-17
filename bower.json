@@ -14,6 +14,9 @@
   ],
   "dependencies": {
     "susy": "~2.2.6",
-    "compass-mixins": "~1.0.2"
+    "compass-mixins": "~1.0.2",
+    "jquery": "~2.1.4",
+    "modernizr": "*",
+    "normalize-css": "*"
   }
 }

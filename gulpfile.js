@@ -138,7 +138,7 @@ gulp.task('svgo', function () {
 // --------------------------------------------------------------------------{{{
 // OPTIMIZA IMÁGENES
 gulp.task('imageMin', function() {
-    return gulp.src(dirs.src + "assets/images/*.*")
+    return gulp.src(dirs.src + "assets/images/**/*.*")
         .pipe(imageMin({
             progressive: true,
             svgoPlugins: [{removeViewBox: false}],
