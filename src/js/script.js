@@ -1,34 +1,4 @@
-<<<<<<< HEAD
-var C = new ScrollMagic.Controller();
-var S = new ScrollMagic.Scene({
-    triggerElement: "#trigger2",
-    duration: 300
-})
-.setTween("#animate2", 
-        {
-            borderTop: "30px solid white",
-            backgroundColor: "blue",
-            scale: 0.7
-        })
-.addIndicators({
-    name: "2 (duration 300)"
-})
-.addTo(C);
-=======
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-//$(function() {
+$(function() {
     controller = new ScrollMagic.Controller();
 
     $(".item").each(function (index, elem) {
@@ -54,7 +24,7 @@ var S = new ScrollMagic.Scene({
         .addIndicators();
     });
 
-//});
+});
 
 //var controller = new ScrollMagic.Controller({
     //globalSceneOptions: {
@@ -75,4 +45,3 @@ var S = new ScrollMagic.Scene({
 //})
 //.addIndicators({name: '2 (duration: 750)'})
 //.addTo(controller);
->>>>>>> e6a810d38d092807a8b0eb534c96de5c0ca60b18
