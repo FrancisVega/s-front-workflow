@@ -2,8 +2,7 @@ node_modules/
 bower_components/
 .*
 !/.gitignore
-app/*.html
-app/assets/images/*.*
-app/assets/fonts/*.*
-app/js/*.*
-dis/*.*
+src/assets/images/*.*
+src/assets/fonts/*.*
+src/js/*.*
+dist/*.*
