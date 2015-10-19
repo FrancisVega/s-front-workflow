@@ -1,18 +1,44 @@
-$(function() {
-    controller = new ScrollMagic();
-    $(".animate").each(function (index, elem) {
-        var tween = TweenMax.to(elem, 0.5,
-                               {scale: 1.02, backgroundColor: 'rgb(255, 39, 46)' }
-                    );new ScrollScene({
-                duration: 200,
-                triggerElement: elem,
-                triggerHook: "onCenter",
-            })
-            .setTween(tween)
-            .addTo(controller)
-            .addIndicators();
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+//$(function() {
+    controller = new ScrollMagic.Controller();
+
+    $(".item").each(function (index, elem) {
+    var config = $(this).attr("data-config");
+    var time = $.parseJSON(config).time;
+    var opacity = $.parseJSON(config).opacity;
+    var scale = $.parseJSON(config).scale;
+
+    //var duration = $(this).attr("data-duration");
+    var tween = TweenMax.to(
+            elem, 0.5,
+            {
+                opacity:opacity
+            }
+    );
+    var j = new ScrollMagic.Scene({
+        duration: time,
+        triggerElement: elem,
+            triggerHook: "onCenter",
+        })
+        .setTween(tween)
+        .addTo(controller)
+        .addIndicators();
     });
-});
+
+//});
+
 //var controller = new ScrollMagic.Controller({
     //globalSceneOptions: {
         //triggerHook: 'onEnter'
@@ -23,7 +49,7 @@ $(function() {
 
 //var scene = new ScrollMagic.Scene({
     //triggerElement: ".item",
-    //duration: 750,
+    //duration: 250,
     //offset: 0
 //})
 //.setTween('.item', {
