@@ -1,7 +1,21 @@
+//
+//
+//
+//
+//
+//
+//
+// todo: hacer que se use un trigger en vez del propio contenedor
+//
+//
+//
+//
+//
+
 $(function() {
     controller = new ScrollMagic.Controller();
 
-    $(".item").each(function (index, elem) {
+    $(".landazor").each(function (index, elem) {
     var config = $(this).attr("data-config");
     var time = $.parseJSON(config).time;
     var opacity = $.parseJSON(config).opacity;
@@ -9,9 +23,10 @@ $(function() {
 
     //var duration = $(this).attr("data-duration");
     var tween = TweenMax.to(
-            elem, 0.5,
+            elem, 1,
             {
-                opacity:opacity
+                opacity:opacity,
+                y: -100
             }
     );
     var j = new ScrollMagic.Scene({
